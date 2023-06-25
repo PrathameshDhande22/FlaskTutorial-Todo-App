@@ -15,6 +15,14 @@ The Flask Todo App is a task management application developed using Flask and Py
 - SQLite: Database for storing todos
 - Bootstrap: Front-end framework for responsiveness
 
+## Screenshots
+- Home Page
+![img1](https://github.com/PrathameshDhande22/FlaskTutorial-Todo-App/assets/87264935/17038d8d-20c1-499c-89a0-b8f2c303e7e7)
+- About Page
+![img2](https://github.com/PrathameshDhande22/FlaskTutorial-Todo-App/assets/87264935/a71acb5f-4abe-4dfe-ab9e-508baa7adc45)
+- Error Page
+![img3](https://github.com/PrathameshDhande22/FlaskTutorial-Todo-App/assets/87264935/8a394de4-165c-453c-b9ac-af52235e21df)
+
 ## Error Page
 
 The app includes a custom 404 error page, which is displayed when a user tries to access a non-existent page. The error page showcases an image by pikisuperstar from Freepik. Attribution to the image can be found at the following link: [Image by pikisuperstar](https://www.freepik.com/free-vector/error-404-concept-landing-page_4730712.htm#query=404%20page&position=7&from_view=keyword&track=ais).
