@@ -1,6 +1,7 @@
+from datetime import datetime
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Select, Update, delete, select
+from sqlalchemy import Column, DateTime, Select, Update, delete, func, select
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todo.db"
@@ -14,10 +15,11 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(30), nullable=False)
     desc = db.Column(db.String(40), nullable=False)
+    addon = Column(DateTime, default=datetime.now())
     completed = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
-        return f"Todo(id={self.id},title={self.title},desc={self.desc},completed={self.completed})"
+        return f"Todo(id={self.id},title={self.title},desc={self.desc},completed={self.completed},dateadded={self.addon})"
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -29,7 +31,10 @@ def home():
         db.session.add(data1)
         db.session.flush()
         db.session.commit()
-    alltodos = db.session.execute(select(Todo)).scalars().all()
+    selectstm = Select(Todo.id, Todo.title, Todo.desc, func.strftime(
+        "%d/%m/%Y %H:%M", Todo.addon), Todo.completed)
+    alltodos = db.session.execute(selectstm).fetchall()
+    print(alltodos)
     return render_template("index.html", todo=alltodos, place={"title": "", "desc": ""}, title={"main": "Add Todo", "btn": "ADD"})
 
 
